@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
+pool: 'OURPOOL'
 
 variables:
   solution: '**/*.sln'
@@ -28,3 +27,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
